@@ -1,0 +1,47 @@
+┌────────────┐
+│ Developer  │
+│ (Local PC) │
+└─────┬──────┘
+      │ git push
+      ▼
+┌──────────────────┐
+│ GitHub Repository│
+│ (Source Code)    │
+└─────┬────────────┘
+      │ triggers
+      ▼
+┌──────────────────────────┐
+│ GitHub Actions (CI)      │
+│                          │
+│ 1. Checkout code         │
+│ 2. Install dependencies  │
+│ 3. Run Pytest            │
+│ 4. Build Docker image    │
+└─────┬────────────────────┘
+      │
+      ▼
+┌──────────────────┐
+│ Docker Image     │
+│ (devops-app)     │
+└─────┬────────────┘
+      │
+      ▼
+┌──────────────────────────┐
+│ Kubernetes Cluster       │
+│ (Kind – Local K8s)       │
+│                          │
+│ ┌────────────────────┐  │
+│ │ Deployment         │  │
+│ │  - Pod (Python App)│  │
+│ └────────────────────┘  │
+│            │             │
+│ ┌────────────────────┐  │
+│ │ Service (ClusterIP)│  │
+│ └────────────────────┘  │
+└─────┬────────────────────┘
+      │ port-forward
+      ▼
+┌──────────────────┐
+│ Browser / Client │
+│ localhost:8080   │
+└──────────────────┘
